@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Timed JavaScript Quiz</title>
+	<link rel="stylesheet" type="text/css" href="./styles.css">
+</head>
+
+<body>
+
+	<div class="quiz-container">
+		<div class="quiz-header">
+			<h1>Timed JavaScript Quiz</h1>
+			<div class="timer">2:00</div>
+		</div>
+
+		<div class="question-container">
+			<p class="question"></p>
+			<ul class="options">
+				<li><input type="radio" name="answer" value="0"><span class="option"></span></li>
+				<li><input type="radio" name="answer" value="1"><span class="option"></span></li>
+				<li><input type="radio" name="answer" value="2"><span class="option"></span></li>
+				<li><input type="radio" name="answer" value="3"><span class="option"></span></li>
+			</ul>
+			<button class="next-btn">Next</button>
+		</div>
+
+		<div class="score-container">
+			<h2>High Scores</h2>
+			<ol class="high-scores"></ol>
+			<button class="reset-btn">Reset</button>
+		</div>
+	</div>
+
+	<script src="./script.js"></script>
+</body>
+</html>
