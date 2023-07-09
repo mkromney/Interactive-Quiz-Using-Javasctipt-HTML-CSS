@@ -1,3 +1,43 @@
-# Maridon-HW-4
-this is for homework four :)
- b
+
+  <a id="README"></a> 
+  # Interactive Quiz Using Javasctipt, HTML & CSS
+  <small>Copyright [mkromney](https://github.com/mkromney) on July 8, 2023 see [License](#license) below.</small>
+
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  
+  ## Description
+  This set of code creates an interactive web-based quiz using javascript, html and css files. A user is presented with a timed quiz and a series of questions. When those questions are answered the user is presented with their score. Scores are stored in the browser and rank scores from highest to lowest. When the user begins the quiz a countdown timer appears. For each question the user answers that is is incorrect, time is subtracted from the timer.
+
+  Video Link of CLA:
+  https://watch.screencastify.com/v/I9p2kSKJt7XNdjF0mcHe
+
+  ## Table of Contents
+  1. [Installation](#installation)
+  2. [Usage](#usage)
+  3. [License](#license)
+  4. [Contribution Guidelines](#contribution)
+  5. [Tests](#tests)
+  6. [Questions](#questions)
+  
+  ## Installation
+  To install this code create a git repository or make a copy of this one and pull the code to a local device. 
+  
+  ## Usage
+  This browser based quiz is meant to provide an easy way to test a user's knowledge. The questions can be adapted to fit any topic as long as the response options can be multiple choice. 
+
+  ## License Fineprint
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+  ## Contribution Guidelines
+  Contributions are welcome. Please create an independent branch and go through the customary/polite channels to initiate collaboration. As always, be kind. 
+  
+  ## Tests
+  There are currently no tests set up for this code. For additional testing contact me. 
+
+  ## Questions
+  <small>For additional questions or comments you can reach me here:</small>
+
+  - GitHub: [mkromney](https://github.com/mkromney)
+  - Email: [mkromney@gmail.com](mailto:mkromney@gmail.com)
+
+  
