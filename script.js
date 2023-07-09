@@ -1,107 +1,144 @@
-const quizContainer = document.querySelector('.quiz-container');
-
-const questionContainer = document.querySelector('.question-container');
-
-const questionText = document.querySelector('.question');
-
-const options = document.querySelector('.options');
-const nextButton = document.querySelector('.next-btn');
-const scoreContainer = document.querySelector('.score-container');
-
-const highScoresList = document.querySelector('.high-scores');
-
-const resetButton = document.querySelector('.reset-btn');
-
-const timer = document.querySelector('.timer');
-
-const timerDisplay = document.getElementById('timer');
+// Gets the required elements from the html classes and buttons. //
+const timerElement = document.getElementById('timer');
 const startButton = document.getElementById('start-btn');
+const questionContainer = document.querySelector('.question-container');
+const questionElement = document.querySelector('.question');
+const optionsElement = document.querySelector('.options');
+const nextButton = document.querySelector('.next-btn');
 
-let timeLeft = 120; // change to desired time limit maybe move it up. 
-let score = 0;
+// Hides the question container before the quiz starts. //
+questionContainer.style.display = 'none';
 
-startButton.addEventListener('click', () => {
+// Sets the  time and current question. // 
+let timeRemaining = 120;
+let currentQuestionIndex = 0;
 
-  timer = setInterval(() => {	
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-      alert('Time is up!');
-      return;
-	}
-		timerDisplay.textContent = timeLeft;
-    	timeLeft--;
-	},1000);
-});
+// List of questions for the quiz, their options and answer keys. //
+let questions = [
+  {
+    question: 'What is the capital of Israel?',
+    options: ['Tel Aviv', 'Berlin', 'Madrid', 'Rome'],
+    answer: 0
+  },
+  {
+    question: 'What is the Capital of Germany?',
+    options: ['Berlin', 'Paris', 'Madrid', 'Rome'],
+    answer: 0
+  },
+  {
+    question: 'What is the Capital of USA?',
+    options: ['Wash. D.C.', 'Berlin', 'Madrid', 'Rome'],
+    answer: 0
+  },
+  {
+    question: 'What is the Capital of Italy?',
+    options: ['Rome', 'Berlin', 'Madrid', 'Rome'],
+    answer: 1
+  },
+  {
+    question: 'What is the Capital of Sweden?',
+    options: ['Helsinki', 'Stockholm', 'Madrid', 'Rome'],
+    answer: 1
+  }
+];
 
-
-
-// // Example function to check answer and reduce time if wrong
-// function checkAnswer(answer) {
-//   if (answer !== 'correct') {
-//     clearInterval(timer);
-//     let timeLeft = parseInt(timerDisplay.textContent) - 5;
-//     if (timeLeft < 0) {
-//       timeLeft = 0;
-
-	
-//     }
-//     timerDisplay.textContent = timeLeft;
-//     timer = setInterval(() => {
-//       if (timeLeft <= 0) {
-//         clearInterval(timer);
-//         alert('Time is up!');
-//         return;
-//       }
-//       timerDisplay.textContent = timeLeft;
-//       timeLeft--;
-//     }, 1000);
-//   }
-// }
-
-function checkAnswer(answer) {
-	//if (the persons answer was correct) add one to their score
-	// else if the person answered wrong, subtract time from timeLeft
-	timeLeft = timeLeft - 5;
-	console.log(timeLeft);
+// Defines the update the timer element. //
+function updateTimer() {
+  timerElement.textContent = timeRemaining;
 }
 
+// Displays the current question and its options. //
+function displayQuestion() {
+  const currentQuestion = questions[currentQuestionIndex];
+  questionElement.textContent = currentQuestion.question;
+  optionsElement.innerHTML = '';
+  
+	// For each question, the list that includes the radio class of options is filled. //
+  currentQuestion.options.forEach((option, index) => {
+    const liElement = document.createElement('li');
+    const inputElement = document.createElement('input');
+    const spanElement = document.createElement('span');
+    
+    inputElement.type = 'radio';
+    inputElement.name = 'answer';
+    inputElement.value = index;
+    spanElement.textContent = option;
+    
+		// Appends each answer option to the quiz container. //
+    liElement.appendChild(inputElement);
+    liElement.appendChild(spanElement);
+    optionsElement.appendChild(liElement);
+  });
+}
 
-let currentQuestion = 0;
-let timerInterval;
-let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+// Function that handles the begin event of the countdown. //
+function startCountdown() {
+  // Hides the start button that was hidden. //
+  startButton.style.display = 'none';
+  
+  // Shows the question container that was hidden. //
+  questionContainer.style.display = 'block';
+  
+  // Displays the current question as defined in the variable above. //
+  displayQuestion();
+  
+  // Starts the timer at 120. //
+  updateTimer();
+  
+  // Time is counted downward. //
+  let countdownInterval = setInterval(() => {
+    timeRemaining--;
+    updateTimer();
+    
+    // Check if the timer has reached 0
+    if (timeRemaining <= 0) {
+      clearInterval(countdownInterval);
+      alert('Time is up!');
+    }
+  }, 1000);
+}
 
-// questions array with objects containing question, options, and answer
+// Handle user's answer selection
+function handleAnswerSelection() {
+  const currentQuestion = questions[currentQuestionIndex];
+  const selectedOption = Number(document.querySelector('input[name="answer"]:checked').value);
+  
+// This part of the code is also not working. //	
+  if (selectedOption === currentQuestion.answer) {
+    // If correct answer selected, do nothing. //
+  } else {
+    // If incorrect answer selected, subtract time. //
+    timeRemaining -= 10;
+    updateTimer();
+  }
+}
 
-const questions = [
-	{
-		question: 'What is the capital of Israel?',
-		options: ['Tel Aviv', 'Berlin', 'Madrid', 'Rome'],
-		answer: 0
-	},
-	{
-		question: 'What is the Capital of Germany?',
-    	options: ['Ber;om', 'Paris', 'Madrid', 'Rome'],
-    	answer: 1
- 	},
-	 {
-		question: 'What is the Capital of USA?',
-    	options: ['Wash. D.C.', 'Berlin', 'Madrid', 'Rome'],
-    	answer: 1
- 	},
-	{
-		question: 'What is the Capital of Italy?',
-    	options: ['Rome', 'Berlin', 'Madrid', 'Rome'],
-    	answer: 1
- 	},
-	{
-		question: 'What is the Capital of Sweden?',
-    	options: ['Helsinki', 'Berlin', 'Madrid', 'Rome'],
-    	answer: 1
- 	},
-	{
-		question: 'What is the Capital of Utah?',
-    	options: ['Salt Lake City', 'Berlin', 'Madrid', 'Rome'],
-    	answer: 1
- 	}]
+// Handles the "next" question button click. //
+function handleNextQuestion() {
+  // Checks to see if an answer has been chosen. This part of the code does not seem to be working properly. //
+  const selectedOption = document.querySelector('input[name="answer"]:checked');
+  if (!selectedOption) {
+    // When no answer is chosen, displays alert: //
+    alert('Please select an answer before proceeding to the next question.');
+    return;
+  }
+  
+  // Allows the questions to be presented in sequential order. //
+  currentQuestionIndex++;
+  
+  // Checks to see if all questions have been answered. //
+  if (currentQuestionIndex >= questions.length) {
+    clearInterval(countdownInterval);
+    alert('Quiz completed!');
+    displayHighScores();
+    return;
+  }
+  
+  // Displays the next question in the list. //
+  displayQuestion();
+}
 
-questionText.textContent = questions[0].question;
+// Adds event listeners to the buttons on the page. //
+startButton.addEventListener('click', startCountdown);
+nextButton.addEventListener('click', handleNextQuestion);
+optionsElement.addEventListener('change', handleAnswerSelection);
